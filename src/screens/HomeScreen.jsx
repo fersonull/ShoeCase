@@ -4,12 +4,13 @@ import { ShoppingCart, Menu } from 'lucide-react-native';
 import ShoeCard from '../components/ShoeCard';
 import Button from '../components/Button';
 import shoesData from '../data/shoes.json';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen({ navigation }) {
   const heroImage = 'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=1200';
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Header */}
       <View className="flex-row items-center justify-between px-6 py-4 border-b-2 border-black">
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -118,6 +119,6 @@ export default function HomeScreen({ navigation }) {
           </ScrollView>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

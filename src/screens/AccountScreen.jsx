@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Menu, User, ChevronRight } from 'lucide-react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function AccountScreen({ navigation }) {
   const menuItems = [
@@ -15,7 +16,7 @@ export default function AccountScreen({ navigation }) {
   ];
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Header */}
       <View className="flex-row items-center justify-between px-6 py-4 border-b-2 border-black">
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -80,6 +81,6 @@ export default function AccountScreen({ navigation }) {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

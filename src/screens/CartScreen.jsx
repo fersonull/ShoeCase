@@ -1,25 +1,42 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert} from 'react-native';
 import { Menu, ShoppingBag } from 'lucide-react-native';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
 import { useCart } from '../context/CartContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function CartScreen({ navigation }) {
-  const { cartItems, updateQuantity, removeFromCart, getCartTotal } = useCart();
+  const { cartItems, updateQuantity, removeFromCart, getCartTotal, clearCart } = useCart();
+
+  const handleCheckout = () => {
+    Alert.alert(
+      'Order Successful',
+      'Thank you for your purchase!',
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            clearCart(); 
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Header */}
       <View className="flex-row items-center justify-between px-6 py-4 border-b-2 border-black">
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <Menu size={28} color="black" strokeWidth={2} />
         </TouchableOpacity>
-        
+
         <Text className="text-xl font-bold tracking-widest">
           CART
         </Text>
-        
+
         <View className="w-7" />
       </View>
 
@@ -32,7 +49,7 @@ export default function CartScreen({ navigation }) {
           <Text className="text-sm text-gray-500 text-center mb-8 tracking-wide">
             Your cart is waiting to be filled with amazing shoes.
           </Text>
-          <Button 
+          <Button
             title="START SHOPPING"
             onPress={() => navigation.navigate('Home')}
             variant="primary"
@@ -45,13 +62,13 @@ export default function CartScreen({ navigation }) {
               <CartItem
                 key={`${item.shoe.id}-${item.size}-${index}`}
                 item={item}
-                onUpdateQuantity={(newQuantity) => 
+                onUpdateQuantity={(newQuantity) =>
                   updateQuantity(item.shoe.id, item.size, newQuantity)
                 }
                 onRemove={() => removeFromCart(item.shoe.id, item.size)}
               />
             ))}
-            
+
             {/* Spacer for fixed checkout button */}
             <View className="h-48" />
           </ScrollView>
@@ -83,9 +100,9 @@ export default function CartScreen({ navigation }) {
                   ${getCartTotal().toFixed(2)}
                 </Text>
               </View>
-              <Button 
+              <Button
                 title="CHECKOUT"
-                onPress={() => {}}
+                onPress={handleCheckout}
                 variant="primary"
                 fullWidth
               />
@@ -93,6 +110,6 @@ export default function CartScreen({ navigation }) {
           </View>
         </>
       )}
-    </View>
+    </SafeAreaView>
   );
 }

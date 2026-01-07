@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, Alert  } from 'react';
 
 const CartContext = createContext();
 
@@ -19,12 +19,10 @@ export const CartProvider = ({ children }) => {
     );
 
     if (existingItemIndex !== -1) {
-      // Item exists, increase quantity
       const updatedCart = [...cartItems];
       updatedCart[existingItemIndex].quantity += 1;
       setCartItems(updatedCart);
     } else {
-      // New item, add to cart
       setCartItems([...cartItems, { shoe, size, quantity: 1 }]);
     }
   };
