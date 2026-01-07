@@ -4,10 +4,10 @@ import { Home, Search, ShoppingBag, User, X } from 'lucide-react-native';
 
 export default function CustomDrawer(props) {
   const menuItems = [
-    { label: 'HOME', icon: Home, screen: 'HomeTabs', params: { screen: 'Home' } },
-    { label: 'BROWSE', icon: Search, screen: 'HomeTabs', params: { screen: 'Browse' } },
-    { label: 'CART', icon: ShoppingBag, screen: 'HomeTabs', params: { screen: 'Cart' } },
-    { label: 'ACCOUNT', icon: User, screen: 'HomeTabs', params: { screen: 'Account' } },
+    { label: 'HOME', icon: Home, screen: 'Main', params: { screen: 'HomeTabs', params: { screen: 'Home' } } },
+    { label: 'BROWSE', icon: Search, screen: 'Main', params: { screen: 'HomeTabs', params: { screen: 'Browse' } } },
+    { label: 'CART', icon: ShoppingBag, screen: 'Main', params: { screen: 'HomeTabs', params: { screen: 'Cart' } } },
+    { label: 'ACCOUNT', icon: User, screen: 'Main', params: { screen: 'HomeTabs', params: { screen: 'Account' } } },
   ];
 
   const categories = [
