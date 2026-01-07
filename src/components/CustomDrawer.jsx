@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { DrawerContentScrollView } from '@react-navigation/drawer';
-import { Home, Search, ShoppingBag, User, Menu, X } from 'lucide-react-native';
+import { Home, Search, ShoppingBag, User, X } from 'lucide-react-native';
 
 export default function CustomDrawer(props) {
   const menuItems = [

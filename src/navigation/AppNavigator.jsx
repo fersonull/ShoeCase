@@ -18,7 +18,7 @@ const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
 // Bottom Tab Navigator
-function TabNavigator() {
+const TabNavigator = () => {
   return (
     <Tab.Navigator
       tabBar={(props) => <CustomBottomTabBar {...props} />}
@@ -32,10 +32,10 @@ function TabNavigator() {
       <Tab.Screen name="Account" component={AccountScreen} />
     </Tab.Navigator>
   );
-}
+};
 
 // Drawer Navigator
-function DrawerNavigator() {
+const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}
@@ -53,7 +53,7 @@ function DrawerNavigator() {
       <Drawer.Screen name="HomeTabs" component={TabNavigator} />
     </Drawer.Navigator>
   );
-}
+};
 
 // Main Stack Navigator
 export default function AppNavigator() {
