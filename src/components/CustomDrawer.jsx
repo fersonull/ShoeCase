@@ -4,10 +4,10 @@ import { Home, Search, ShoppingBag, User, X } from 'lucide-react-native';
 
 export default function CustomDrawer(props) {
   const menuItems = [
-    { label: 'HOME', icon: Home, route: 'Home' },
-    { label: 'BROWSE', icon: Search, route: 'Browse' },
-    { label: 'CART', icon: ShoppingBag, route: 'Cart' },
-    { label: 'ACCOUNT', icon: User, route: 'Account' },
+    { label: 'HOME', icon: Home, screen: 'HomeTabs', params: { screen: 'Home' } },
+    { label: 'BROWSE', icon: Search, screen: 'HomeTabs', params: { screen: 'Browse' } },
+    { label: 'CART', icon: ShoppingBag, screen: 'HomeTabs', params: { screen: 'Cart' } },
+    { label: 'ACCOUNT', icon: User, screen: 'HomeTabs', params: { screen: 'Account' } },
   ];
 
   const categories = [
@@ -30,21 +30,20 @@ export default function CustomDrawer(props) {
       <ScrollView className="flex-1">
         {/* Main Navigation */}
         <View className="border-b border-black">
-          {menuItems.map((item, index) => {
+          {menuItems.map((item) => {
             const Icon = item.icon;
-            const isFocused = props.state.index === props.state.routes.findIndex(r => r.name === item.route);
             
             return (
               <TouchableOpacity
-                key={item.route}
+                key={item.label}
                 onPress={() => {
-                  props.navigation.navigate(item.route);
+                  props.navigation.navigate(item.screen, item.params);
                   props.navigation.closeDrawer();
                 }}
-                className={`flex-row items-center px-6 py-5 border-b border-gray-200 ${isFocused ? 'bg-black' : 'bg-white'}`}
+                className="flex-row items-center px-6 py-5 border-b border-gray-200 bg-white"
               >
-                <Icon size={24} color={isFocused ? 'white' : 'black'} strokeWidth={2} />
-                <Text className={`ml-4 text-base font-bold tracking-widest ${isFocused ? 'text-white' : 'text-black'}`}>
+                <Icon size={24} color="black" strokeWidth={2} />
+                <Text className="ml-4 text-base font-bold tracking-widest text-black">
                   {item.label}
                 </Text>
               </TouchableOpacity>

@@ -34,40 +34,41 @@ const TabNavigator = () => {
   );
 };
 
-// Drawer Navigator
-const DrawerNavigator = () => {
+
+// Stack Navigator with Drawer
+const StackWithDrawer = () => {
   return (
-    <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawer {...props} />}
+    <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        drawerStyle: {
-          width: 280,
-          borderRightWidth: 2,
-          borderRightColor: 'black',
-        },
-        drawerType: 'front',
-        overlayColor: 'rgba(0, 0, 0, 0.5)',
+        animation: 'none',
       }}
     >
-      <Drawer.Screen name="HomeTabs" component={TabNavigator} />
-    </Drawer.Navigator>
+      <Stack.Screen name="HomeTabs" component={TabNavigator} />
+      <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
+    </Stack.Navigator>
   );
 };
 
-// Main Stack Navigator
+// Main App Navigator
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
+      <Drawer.Navigator
+        drawerContent={(props) => <CustomDrawer {...props} />}
         screenOptions={{
           headerShown: false,
-          animation: 'none',
+          drawerStyle: {
+            width: 280,
+            borderRightWidth: 2,
+            borderRightColor: 'black',
+          },
+          drawerType: 'front',
+          overlayColor: 'rgba(0, 0, 0, 0.5)',
         }}
       >
-        <Stack.Screen name="Main" component={DrawerNavigator} />
-        <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} />
-      </Stack.Navigator>
+        <Drawer.Screen name="Main" component={StackWithDrawer} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

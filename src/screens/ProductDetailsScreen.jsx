@@ -19,7 +19,7 @@ export default function ProductDetailsScreen({ route, navigation }) {
           PRODUCT
         </Text>
         
-        <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
+        <TouchableOpacity onPress={() => navigation.navigate('HomeTabs', { screen: 'Cart' })}>
           <ShoppingCart size={28} color="black" strokeWidth={2} />
         </TouchableOpacity>
       </View>
@@ -112,7 +112,7 @@ export default function ProductDetailsScreen({ route, navigation }) {
           onPress={() => {
             if (selectedSize) {
               // Add to cart logic here
-              navigation.navigate('Cart');
+              navigation.navigate('HomeTabs', { screen: 'Cart' });
             }
           }}
           variant="primary"
