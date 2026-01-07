@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
 import { ArrowLeft, ShoppingCart } from 'lucide-react-native';
 import Button from '../components/Button';
+import { useCart } from '../context/CartContext';
 
 export default function ProductDetailsScreen({ route, navigation }) {
   const { shoe } = route.params;
   const [selectedSize, setSelectedSize] = useState(null);
+  const { addToCart } = useCart();
 
   return (
     <View className="flex-1 bg-white">
@@ -111,8 +113,18 @@ export default function ProductDetailsScreen({ route, navigation }) {
           title="ADD TO CART"
           onPress={() => {
             if (selectedSize) {
-              // Add to cart logic here
-              navigation.navigate('HomeTabs', { screen: 'Cart' });
+              addToCart(shoe, selectedSize);
+              Alert.alert(
+                'Added to Cart',
+                `${shoe.name} (Size ${selectedSize}) has been added to your cart.`,
+                [
+                  { text: 'Continue Shopping', style: 'cancel' },
+                  { 
+                    text: 'View Cart', 
+                    onPress: () => navigation.navigate('HomeTabs', { screen: 'Cart' })
+                  }
+                ]
+              );
             }
           }}
           variant="primary"
