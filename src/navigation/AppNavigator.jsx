@@ -17,7 +17,6 @@ const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 const Tab = createBottomTabNavigator();
 
-// Bottom Tab Navigator
 const TabNavigator = () => {
   return (
     <Tab.Navigator
@@ -35,7 +34,6 @@ const TabNavigator = () => {
 };
 
 
-// Stack Navigator with Drawer
 const StackWithDrawer = () => {
   return (
     <Stack.Navigator
@@ -50,7 +48,6 @@ const StackWithDrawer = () => {
   );
 };
 
-// Main App Navigator
 export default function AppNavigator() {
   return (
     <NavigationContainer>

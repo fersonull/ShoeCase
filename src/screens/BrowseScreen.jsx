@@ -3,6 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-nativ
 import { Menu, ShoppingCart, Search, X } from 'lucide-react-native';
 import ShoeCard from '../components/ShoeCard';
 import shoesData from '../data/shoes.json';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function BrowseScreen({ navigation }) {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
@@ -13,14 +14,12 @@ export default function BrowseScreen({ navigation }) {
   const filteredProducts = useMemo(() => {
     let filtered = shoesData;
 
-    // Filter by category
     if (selectedCategory !== 'ALL') {
       filtered = filtered.filter(
         shoe => shoe.category.toUpperCase() === selectedCategory
       );
     }
 
-    // Filter by search query
     if (searchQuery.trim() !== '') {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(
@@ -35,8 +34,7 @@ export default function BrowseScreen({ navigation }) {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <View className="flex-1 bg-white">
-      {/* Header */}
+    <SafeAreaView className="flex-1 bg-white">
       <View className="border-b-2 border-black">
         <View className="flex-row items-center justify-between px-6 py-4">
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
@@ -52,7 +50,6 @@ export default function BrowseScreen({ navigation }) {
           </TouchableOpacity>
         </View>
         
-        {/* Search Bar */}
         <View className="px-6 pb-4">
           <View className="flex-row items-center border-2 border-black">
             <View className="flex-row items-center flex-1 px-4 py-3">
@@ -80,7 +77,6 @@ export default function BrowseScreen({ navigation }) {
       </View>
 
       <ScrollView className="flex-1">
-        {/* Categories */}
         <View className="px-6 py-6 border-b-2 border-black">
           <Text className="text-sm font-bold tracking-widest text-gray-500 mb-4">
             CATEGORIES
@@ -107,7 +103,6 @@ export default function BrowseScreen({ navigation }) {
           </ScrollView>
         </View>
 
-        {/* Products Grid */}
         <View className="px-6 py-6">
           <View className="flex-row justify-between items-center mb-4">
             <Text className="text-sm font-bold tracking-widest text-gray-500">
@@ -154,6 +149,6 @@ export default function BrowseScreen({ navigation }) {
           )}
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }

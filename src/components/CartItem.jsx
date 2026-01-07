@@ -8,7 +8,6 @@ export default function CartItem({ item, onUpdateQuantity, onRemove }) {
   return (
     <View className="border-b-2 border-black">
       <View className="flex-row p-4">
-        {/* Product Image */}
         <View className="w-24 h-24 border-2 border-black mr-4">
           <Image 
             source={{ uri: shoe.image }}
@@ -17,7 +16,6 @@ export default function CartItem({ item, onUpdateQuantity, onRemove }) {
           />
         </View>
 
-        {/* Product Info */}
         <View className="flex-1">
           <View className="flex-row justify-between mb-2">
             <View className="flex-1 mr-2">
@@ -32,7 +30,6 @@ export default function CartItem({ item, onUpdateQuantity, onRemove }) {
               </Text>
             </View>
             
-            {/* Remove Button */}
             <TouchableOpacity 
               onPress={onRemove}
               className="w-8 h-8 items-center justify-center border-2 border-black"
@@ -41,9 +38,7 @@ export default function CartItem({ item, onUpdateQuantity, onRemove }) {
             </TouchableOpacity>
           </View>
 
-          {/* Quantity and Price */}
           <View className="flex-row justify-between items-center mt-2">
-            {/* Quantity Controls */}
             <View className="flex-row items-center border-2 border-black">
               <TouchableOpacity 
                 onPress={() => onUpdateQuantity(quantity - 1)}
@@ -62,7 +57,6 @@ export default function CartItem({ item, onUpdateQuantity, onRemove }) {
               </TouchableOpacity>
             </View>
 
-            {/* Price */}
             <Text className="text-lg font-bold">
               ${(shoe.price * quantity).toFixed(2)}
             </Text>

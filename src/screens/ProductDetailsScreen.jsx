@@ -3,6 +3,7 @@ import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from 'react-na
 import { ArrowLeft, ShoppingCart } from 'lucide-react-native';
 import Button from '../components/Button';
 import { useCart } from '../context/CartContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ProductDetailsScreen({ route, navigation }) {
   const { shoe } = route.params;
@@ -10,7 +11,7 @@ export default function ProductDetailsScreen({ route, navigation }) {
   const { addToCart } = useCart();
 
   return (
-    <View className="flex-1 bg-white">
+    <SafeAreaView className="flex-1 bg-white">
       {/* Header */}
       <View className="flex-row items-center justify-between px-6 py-4 border-b-2 border-black">
         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -132,6 +133,6 @@ export default function ProductDetailsScreen({ route, navigation }) {
           disabled={!selectedSize}
         />
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
