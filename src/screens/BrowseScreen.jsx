@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { Menu, ShoppingCart, Search } from 'lucide-react-native';
 import ShoeCard from '../components/ShoeCard';
 import shoesData from '../data/shoes.json';
 
 export default function BrowseScreen({ navigation }) {
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
+
+  const categories = ['ALL', 'RUNNING', 'LIFESTYLE', 'CASUAL', 'TENNIS', 'SKATE'];
+
+  const filteredProducts = useMemo(() => {
+    if (selectedCategory === 'ALL') {
+      return shoesData;
+    }
+    return shoesData.filter(
+      shoe => shoe.category.toUpperCase() === selectedCategory
+    );
+  }, [selectedCategory]);
+
   return (
     <View className="flex-1 bg-white">
       {/* Header */}
@@ -42,12 +55,18 @@ export default function BrowseScreen({ navigation }) {
           </Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             <View className="flex-row gap-3">
-              {['ALL', 'RUNNING', 'LIFESTYLE', 'BASKETBALL', 'TRAINING'].map((cat) => (
+              {categories.map((cat) => (
                 <TouchableOpacity 
                   key={cat}
-                  className="px-6 py-3 border-2 border-black bg-white"
+                  onPress={() => setSelectedCategory(cat)}
+                  className={`px-6 py-3 border-2 border-black ${
+                    selectedCategory === cat ? 'bg-black' : 'bg-white'
+                  }`}
+                  activeOpacity={0.8}
                 >
-                  <Text className="text-sm font-bold tracking-wider">
+                  <Text className={`text-sm font-bold tracking-wider ${
+                    selectedCategory === cat ? 'text-white' : 'text-black'
+                  }`}>
                     {cat}
                   </Text>
                 </TouchableOpacity>
@@ -58,19 +77,43 @@ export default function BrowseScreen({ navigation }) {
 
         {/* Products Grid */}
         <View className="px-6 py-6">
-          <Text className="text-sm font-bold tracking-widest text-gray-500 mb-4">
-            {shoesData.length} PRODUCTS
-          </Text>
-          <View className="gap-6">
-            {shoesData.map((shoe) => (
-              <ShoeCard 
-                key={shoe.id}
-                shoe={shoe}
-                onPress={() => navigation.navigate('ProductDetails', { shoe })}
-                fullWidth={true}
-              />
-            ))}
+          <View className="flex-row justify-between items-center mb-4">
+            <Text className="text-sm font-bold tracking-widest text-gray-500">
+              {filteredProducts.length} PRODUCTS
+            </Text>
+            {selectedCategory !== 'ALL' && (
+              <TouchableOpacity 
+                onPress={() => setSelectedCategory('ALL')}
+                className="px-4 py-2 border border-black"
+              >
+                <Text className="text-xs font-bold tracking-wider">
+                  CLEAR FILTER
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
+          
+          {filteredProducts.length > 0 ? (
+            <View className="gap-6">
+              {filteredProducts.map((shoe) => (
+                <ShoeCard 
+                  key={shoe.id}
+                  shoe={shoe}
+                  onPress={() => navigation.navigate('ProductDetails', { shoe })}
+                  fullWidth={true}
+                />
+              ))}
+            </View>
+          ) : (
+            <View className="items-center justify-center py-16 border-2 border-black">
+              <Text className="text-xl font-bold tracking-widest mb-2">
+                NO PRODUCTS
+              </Text>
+              <Text className="text-sm text-gray-500 tracking-wide">
+                No items found in this category
+              </Text>
+            </View>
+          )}
         </View>
       </ScrollView>
     </View>
