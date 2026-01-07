@@ -1,97 +1,162 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# KICKS/SHARP
 
-# Getting Started
+A minimalist shoe e-commerce mobile application built with React Native and NativeWind, featuring a modern brutalist design aesthetic with zero border radius and sharp geometric elements.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Design Philosophy
 
-## Step 1: Start Metro
+KICKS/SHARP follows a strict brutalist-lite design language characterized by:
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- Zero border radius on all UI elements
+- High contrast monochrome color palette
+- Heavy use of whitespace and dividing lines
+- Industrial and modern aesthetic
+- Sharp 90-degree corners throughout
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Tech Stack
 
-```sh
-# Using npm
-npm start
+- React Native 0.83.1
+- NativeWind 4.2.1 - Tailwind CSS for React Native
+- React Navigation 7.x - Drawer and Bottom Tab navigation
+- Lucide React Native - Icon library
+- Functional components with React Hooks
 
-# OR using Yarn
-yarn start
+## Features
+
+### Navigation System
+
+**Custom Bottom Tab Bar**
+- Rectangular container with top border
+- Active tab indicated by bold square underline
+- Four main sections: Home, Browse, Cart, Account
+
+**Custom Drawer Navigation**
+- Full-height slide-out panel with solid border
+- Rectangular menu items with hairline dividers
+- Category browsing section
+- No rounded elements or shadows
+
+### Screens
+
+**Home Screen**
+- Minimalist header with text logo and cart icon
+- Full-width hero banner with CTA button
+- Horizontal scrolling new arrivals section
+- Featured category highlights
+- Best sellers showcase
+
+**Product Details Screen**
+- Large product image display
+- Size selector with square boxes
+- Selected size shown as solid black with white text
+- Full-width rectangular "Add to Cart" button
+- Detailed product information section
+
+**Browse Screen**
+- Search functionality
+- Category filtering
+- Grid layout product display
+- Consistent card styling
+
+**Cart Screen**
+- Empty state with call-to-action
+- Ready for cart item management
+
+**Account Screen**
+- User profile section
+- Organized menu items by category
+- Settings and support options
+
+### Components
+
+**ShoeCard**
+- Sharp bordered container
+- Product image with brand and price
+- Consistent typography hierarchy
+
+**Button**
+- Primary and secondary variants
+- Full-width and inline options
+- Disabled state handling
+
+**CustomBottomTabBar**
+- No default native styling
+- Sharp geometric design
+- Bold active state indicators
+
+**CustomDrawer**
+- Solid border instead of shadow
+- Rectangular menu blocks
+- Category navigation
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Button.jsx
+│   ├── CustomBottomTabBar.jsx
+│   ├── CustomDrawer.jsx
+│   └── ShoeCard.jsx
+├── data/
+│   └── shoes.json
+├── navigation/
+│   └── AppNavigator.jsx
+└── screens/
+    ├── AccountScreen.jsx
+    ├── BrowseScreen.jsx
+    ├── CartScreen.jsx
+    ├── HomeScreen.jsx
+    └── ProductDetailsScreen.jsx
 ```
 
-## Step 2: Build and run your app
+## Installation
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+Install dependencies:
 
 ```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+npm install
 ```
 
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+For iOS, install CocoaPods dependencies:
 
 ```sh
 bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
 bundle exec pod install
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+## Running the App
+
+Start Metro bundler:
 
 ```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+npm start
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+Run on Android:
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```sh
+npm run android
+```
 
-## Step 3: Modify your app
+Run on iOS:
 
-Now that you have successfully run the app, let's make changes!
+```sh
+npm run ios
+```
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+## Development Notes
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+- All components use NativeWind className props for styling
+- Mock data provided in JSON format for product catalog
+- Navigation structure uses nested navigators: Stack > Drawer > Bottom Tabs
+- Design strictly adheres to zero border radius constraint
+- Color palette limited to black, white, and gray tones
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## Future Enhancements
 
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+- Cart state management
+- User authentication
+- Product filtering and search
+- Order history
+- Payment integration
+- Wishlist functionality
