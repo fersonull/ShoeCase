@@ -1,10 +1,10 @@
-# KICKS/SHARP
+# SHOECASE
 
 A minimalist shoe e-commerce mobile application built with React Native and NativeWind, featuring a modern brutalist design aesthetic with zero border radius and sharp geometric elements.
 
 ## Design Philosophy
 
-KICKS/SHARP follows a strict brutalist-lite design language characterized by:
+SHOECASE follows a strict brutalist-lite design language characterized by:
 
 - Zero border radius on all UI elements
 - High contrast monochrome color palette
