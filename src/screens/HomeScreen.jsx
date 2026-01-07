@@ -17,7 +17,7 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
         
         <Text className="text-2xl font-bold tracking-widest">
-          KICKS/SHARP
+          SHOECASE
         </Text>
         
         <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
