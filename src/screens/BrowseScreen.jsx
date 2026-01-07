@@ -61,14 +61,14 @@ export default function BrowseScreen({ navigation }) {
           <Text className="text-sm font-bold tracking-widest text-gray-500 mb-4">
             {shoesData.length} PRODUCTS
           </Text>
-          <View className="flex-row flex-wrap justify-between">
+          <View className="gap-6">
             {shoesData.map((shoe) => (
-              <View key={shoe.id} className="w-full mb-6">
-                <ShoeCard 
-                  shoe={shoe}
-                  onPress={() => navigation.navigate('ProductDetails', { shoe })}
-                />
-              </View>
+              <ShoeCard 
+                key={shoe.id}
+                shoe={shoe}
+                onPress={() => navigation.navigate('ProductDetails', { shoe })}
+                fullWidth={true}
+              />
             ))}
           </View>
         </View>

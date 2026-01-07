@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 
-export default function ShoeCard({ shoe, onPress }) {
+export default function ShoeCard({ shoe, onPress, fullWidth = false }) {
   return (
     <TouchableOpacity 
       onPress={onPress}
-      className="w-64 mr-4 border-2 border-black bg-white"
+      className={`${fullWidth ? 'w-full' : 'w-64 mr-4'} border-2 border-black bg-white`}
       activeOpacity={0.8}
     >
       <View className="aspect-square border-b-2 border-black overflow-hidden">
